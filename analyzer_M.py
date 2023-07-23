@@ -8,7 +8,7 @@ email: vyskoc68@gmail.com
 
 discord: Petr Svetr#4490ˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇ
 """
-import re
+import sys
 
 from data import task_template
 
@@ -64,25 +64,34 @@ def count_numbers_words(text):
             numbers_sum = numbers_sum + int(word)
     return numbers_words, numbers_sum
 
-#name = input("zadej jmeno: ")
-#pass_u = input("zadej heslo: ")
-name = "bob"
-pass_u = "123"
-# # print(f"username:{name}")
-# # print(f"password:{pass_u}")
+name = input("zadej jmeno: ")
+pass_u = input("zadej heslo: ")
 
 if check_login(name, pass_u):
     print(line)
     print(f"Welcome to the app, {name}")
 else:
     print("unregistered user, terminating the program.")
+    sys.exit()
 
 print("We have 3 texts to be analyzed.")
 print(line)
-#choice_text = int(input("Enter a number btw. 1 and 3 to select: "))
-choice_text = 1 - 1
+choice_text = input("Enter a number btw. 1 and 3 to select: ")
+if choice_text.isdigit():
+    choice_text = int(choice_text) - 1
+    if choice_text < 0 or choice_text > 2:
+        print("Your choice is out of range")
+        print(line)
+        sys.exit()
+else:
+    print("Your choice is not number")
+    print(line)
+    sys.exit()
+#choice_text = int(choice_text)
+print(line)
+
 anal_text = (task_template.TEXTS[choice_text])
-anal_text = anal_text.replace(".", "").replace(",", " ")
+anal_text = anal_text.replace(".", "").replace(",", "")
 print(anal_text)
 print(f"počet slov: {word_count(anal_text)}")
 print(f"velké pismeno: {count_titlecase_words(anal_text)}")
