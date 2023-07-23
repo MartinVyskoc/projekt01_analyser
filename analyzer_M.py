@@ -80,9 +80,9 @@ else:
 print("We have 3 texts to be analyzed.")
 print(line)
 #choice_text = int(input("Enter a number btw. 1 and 3 to select: "))
-choice_text = 4 - 1
+choice_text = 1 - 1
 anal_text = (task_template.TEXTS[choice_text])
-anal_text = anal_text.replace(".", "")
+anal_text = anal_text.replace(".", "").replace(",", " ")
 print(anal_text)
 print(f"počet slov: {word_count(anal_text)}")
 print(f"velké pismeno: {count_titlecase_words(anal_text)}")
@@ -91,4 +91,33 @@ print(f"malá pismena: {count_lowercase_words(anal_text)}")
 result1, result2 = count_numbers_words(anal_text)
 print(f"cisla: {result1}")
 print(f"součet {result2}")
+
+longest_word_length = 0
+
+for word in anal_text.split():
+    if len(word) > longest_word_length:
+        longest_word_length = len(word)
+
+dictionary = {}
+
+for i in range(1, longest_word_length + 1):
+    dictionary[i] = 0
+
+max_star = 0
+for word in anal_text.split():
+    dictionary[len(word)] += 1
+    if dictionary[len(word)] > max_star:
+        max_star = dictionary[len(word)]
+
+print("-" * 22)
+print(" LEN|", "OCCURENCES".center(max_star), "|NR.")
+print("-" * 22)
+
+for key, value_p in dictionary.items():
+    key2 = str(key)
+    len_p = key2.rjust(3)
+    star1 = str("*" * value_p)
+    star2 = star1.ljust(max_star)
+    print(len_p, "|", star2, "|", value_p)
+
 print("KONEC * KONEC")
