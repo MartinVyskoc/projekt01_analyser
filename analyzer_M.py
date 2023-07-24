@@ -92,14 +92,13 @@ print(line)
 
 anal_text = (task_template.TEXTS[choice_text])
 anal_text = anal_text.replace(".", "").replace(",", "")
-print(anal_text)
-print(f"počet slov: {word_count(anal_text)}")
-print(f"velké pismeno: {count_titlecase_words(anal_text)}")
-print(f"velká pismena: {count_uppercase_words(anal_text)}")
-print(f"malá pismena: {count_lowercase_words(anal_text)}")
+print(f"There are {word_count(anal_text)} words in the selected text.")
+print(f"There are {count_titlecase_words(anal_text)} titlecase words.")
+print(f"There are {count_uppercase_words(anal_text)} uppercase words.")
+print(f"There are {count_lowercase_words(anal_text)} lowercase words.")
 result1, result2 = count_numbers_words(anal_text)
-print(f"cisla: {result1}")
-print(f"součet {result2}")
+print(f"There are {result1} numeric strings.")
+print(f"The sum of all the numbers {result2}")
 
 longest_word_length = 0
 
@@ -118,9 +117,9 @@ for word in anal_text.split():
     if dictionary[len(word)] > max_star:
         max_star = dictionary[len(word)]
 
-print("-" * 22)
+print(line)
 print(" LEN|", "OCCURENCES".center(max_star), "|NR.")
-print("-" * 22)
+print(line)
 
 for key, value_p in dictionary.items():
     key2 = str(key)
